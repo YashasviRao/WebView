@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.webview">
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
     <application
         android:allowBackup="true"
@@ -16,13 +17,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-       <activity android:name=".Main2Activity"
+        <activity
+            android:name=".ApActivity"
             android:parentActivityName=".MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.webview.MainActivity"/>
+                android:value="com.example.webview.MainActivity" />
         </activity>
-
+        <activity
+            android:name=".ConstApActivity"
+            android:parentActivityName=".ApActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.webview.ApActivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,113 @@
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
+          integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+          crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
+            integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
+            crossorigin=""></script>
+    <script src="jammuandkashmirjson.html"></script>
+
+
+    <style>
+    #mapid{
+	  width:300px;
+	  height:400px;
+	  margin-left:5px;
+	   margin-right:5px;
+	  padding:20px;
+	  background-color:#FFFFFF;
+	  border-width:5px;
+	  border-color:#000000;
+	}
+	.tooltip
+	{
+	background : black;
+	color : white
+	}
+	.leaflet-tooltip-left.tooltip::before {
+  border-left-color: black;
+}
+.leaflet-tooltip-right.tooltip::before {
+  border-right-color: black;
+}
+  </style>
+</head>
+<body>
+<div id="mapid"></div>
+
+<script>
+ var mapstyle={
+	  color:"#000",
+	  weight:'1',
+	  fillColor:"#fff",
+	  fillOpacity:1
+	};
+var highlightStyle = {
+       weight: 3,
+       color: '#3B555C',
+	   fillColor:'#bbc0c4',
+       dashArray: '',
+       fillOpacity: 0.6
+     }
+
+    var mymap=L.map('mapid',{minZoom:3,maxZoom:7,attributionControl:false}).setView([33.802886, 76.060547],6);
+    mymap.on('click', function(e)
+    {
+    alert(e.latlng);
+    });
+    var p = L.circleMarker(
+			[36.650793,76.398926]
+		,{ radius:0.01, color: '#fff' }).bindTooltip('Click to redirect',{permanent : true,offset: L.point(35, -20),direction : "right",className : "tooltip",}).addTo(mymap);
+	var count=false;
+
+    function check(count)
+	{
+	if(count)
+	   mymap.removeLayer(p);
+	}
+	var layer=L.geoJSON(jkdata,{style:mapstyle,onEachFeature: onEachFeature}).addTo(mymap);
+    function fitBounds(bounds){
+	    count=true;
+        bounds.target.feature.properties.number++;
+     if(bounds.target.feature.properties.number=="2")
+         showAndroidToast(bounds.target.feature.properties.pconst);
+		   check(count);
+      }
+
+       function showAndroidToast(constituency)
+     {
+        AndroidInterface.showToast(constituency);
+     }
+
+	 function highlightFeature(evt) {
+        var feature = evt.target;
+        feature.setStyle(highlightStyle);
+        if (!L.Browser.ie && !L.Browser.opera) {
+		    mymap.removeLayer(p);
+            feature.bringToFront();
+        }
+    }
+
+    function resetHighlight(evt) {
+	    if(!count)
+		p.addTo(mymap);
+        layer.resetStyle(evt.target);
+    }
+
+	function onEachFeature(feature, layer) {
+
+       layer.bindTooltip(feature.properties.pconst,{opacity:'1',direction : 'right',});
+		layer.on({
+            mouseover:highlightFeature,
+            mouseout:resetHighlight,
+			click:fitBounds
+
+        });
+
+    }
+
+  </script>
+</body>
+</html>

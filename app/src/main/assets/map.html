@@ -7,18 +7,44 @@
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
             integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
             crossorigin=""></script>
-    <script src="tamilnaduson.html"></script>
-    <script src="new.html"></script>
+    <script src="indiajson.html"></script>
+    <script src="andhrajson.html"></script>
+    <script src="arunachalpradeshjson.html"></script>
+    <script src="biharjson.html"></script>
+    <script src="chhattisgarhjson.html"></script>
+    <script src="goajson.html"></script>
+    <script src="gujarathjson.html"></script>
+    <script src="haryanajson"></script>
+    <script src="himachalpradeshjson.html"></script>
+    <script src="jammuandkashmirjson.html"></script>
+    <script src="jharkhandjson.html"></script>
+    <script src="karnatakajson.html"></script>
+    <script src="keralajson.html"></script>
+    <script src="madhyapradeshjson.html"></script>
+    <script src="maharashtrajson.html"></script>
+    <script src="manipurjson.html"></script>
+    <script src="meghalayajson.html"></script>
+    <script src="mizoramjson.html"></script>
+    <script src="nagalandjson.html"></script>
+    <script src="odishajson.html"></script>
+    <script src="punjabjson.html"></script>
+    <script src="rajasthanjson.html"></script>
+    <script src="sikkimjson.html"></script>
+    <script src="telanganajson.html"></script>
+    <script src="tripurajson.html"></script>
+    <script src="uttarakhandjson.html"></script>
+    <script src="westbengaljson.html"></script>
+    <script src="tamilnadujson.html"></script>
 
     <style>
     #mapid{
-	  width:250px;
+	  width:300px;
 	  height:400px;
-	  margin-left:15px;
 	  padding:20px;
-	  background-color:#FFFFFF;
+	 background-color:#ffffff;
 	  border-width:5px;
 	  border-color:#000000;
+
 	}
 	.tooltip
 	{
@@ -51,10 +77,10 @@ var highlightStyle = {
        fillOpacity: 0.6
      }
 
-    var mymap=L.map('mapid',{minZoom:3,maxZoom:7,attributionControl:false}).setView([11.380955, 78.713745],6);
+    var mymap=L.map('mapid',{minZoom:3,maxZoom:7,attributionControl:false}).setView([25.380955, 81.713745],4);
     var p = L.circleMarker(
-			[14.264383, 77.299805]
-		,{ radius:0.01, color: '#fff' }).bindTooltip('Click to redirect',{permanent : true,offset: L.point(35, -20),direction : "right",className : "tooltip",}).addTo(mymap);
+			[37.264383, 80.299805]
+		,{ radius:0.01, color: '#fff' }).bindTooltip('Click to redirect',{permanent : true,offset: L.point(35, -20),direction : "right",className : "tooltip"}).addTo(mymap);
 	var count=false;
 
     function check(count)
@@ -62,26 +88,172 @@ var highlightStyle = {
 	if(count)
 	   mymap.removeLayer(p);
 	}
-	var layer=L.geoJSON(tamilnadudata,{style:mapstyle,onEachFeature: onEachFeature}).addTo(mymap);
-  //  function zoomToFeature(evt) {
-  //     fitBounds(evt.target.getBounds());
-  //  }
+	var layer=L.geoJSON(states,{style:mapstyle,onEachFeature: onEachFeature}).addTo(mymap);
+
 
     function fitBounds(bounds){
 	    count=true;
-       // mymap.fitBounds(bounds);
         bounds.target.feature.properties.number++;
-		if((bounds.target.feature.properties.pconst == "Kanniyakumari")&&(bounds.target.feature.properties.number=="2"))
-	    {
-	      showAndroidToast(bounds.target.feature.properties.pconst);
-	       mymap.removeLayer(layer);
-	      // var newlayer = L.geoJSON(newdata,{style:mapstyle,onEachFeature: onEachFeature}).addTo(mymap);
-	    }
-		 check(count);
+     if(bounds.target.feature.properties.number=="2")
+      {
+        if(bounds.target.feature.properties.name=="Andhra Pradesh")
+         {
+           mymap.removeLayer(layer);
+           showAndroidToast(bounds.target.feature.properties.name);
+
+	     }
+	    else if(bounds.target.feature.properties.name=="Arunachal Pradesh")
+         {
+            mymap.removeLayer(layer);
+            showAndroidToast(bounds.target.feature.properties.name);
+         }
+	    else if(bounds.target.feature.properties.name=="Assam")
+         {
+             mymap.removeLayer(layer);
+             showAndroidToast(bounds.target.feature.properties.name);
+         }
+	      else if(bounds.target.feature.properties.name=="Bihar")
+         {
+             mymap.removeLayer(layer);
+	         showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	     else if(bounds.target.feature.properties.name=="Chhattisgarh")
+         {
+             mymap.removeLayer(layer);
+	         showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	      else if(bounds.target.feature.properties.name=="Goa")
+         {
+             mymap.removeLayer(layer);
+	        showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	      else if(bounds.target.feature.properties.name=="Gujarat")
+         {
+             mymap.removeLayer(layer);
+	         showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	     else if(bounds.target.feature.properties.name=="Himachal Pradesh")
+         {
+             mymap.removeLayer(layer);
+	         showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	     else if(bounds.target.feature.properties.name=="Haryana")
+         {
+             mymap.removeLayer(layer);
+	         showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	      else if(bounds.target.feature.properties.name=="Haryana")
+         {
+             mymap.removeLayer(layer);
+	         showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	     else if(bounds.target.feature.properties.name=="Jharkhand")
+         {
+             mymap.removeLayer(layer);
+	         showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	     else if(bounds.target.feature.properties.name=="Jammu and Kashmir")
+         {
+             mymap.removeLayer(layer);
+	         showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	     else if(bounds.target.feature.properties.name=="Karnataka")
+         {
+             mymap.removeLayer(layer);
+	         showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	      else if(bounds.target.feature.properties.name=="Kerala")
+         {
+             mymap.removeLayer(layer);
+	         showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	      else if(bounds.target.feature.properties.name=="Maharashtra")
+         {
+             mymap.removeLayer(layer);
+	         showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	      else if(bounds.target.feature.properties.name=="Meghalaya")
+         {
+             mymap.removeLayer(layer);
+	        showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	      else if(bounds.target.feature.properties.name=="Manipur")
+         {
+             mymap.removeLayer(layer);
+	        showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	     else if(bounds.target.feature.properties.name=="Madhya Pradesh")
+         {
+             mymap.removeLayer(layer);
+	         showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	     else if(bounds.target.feature.properties.name=="Mizoram")
+         {
+             mymap.removeLayer(layer);
+	         showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	     else if(bounds.target.feature.properties.name=="Nagaland")
+         {
+             mymap.removeLayer(layer);
+	         showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	     else if(bounds.target.feature.properties.name=="Odisha")
+         {
+             mymap.removeLayer(layer);
+	         showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	     else if(bounds.target.feature.properties.name=="Punjab")
+         {
+             mymap.removeLayer(layer);
+	         showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	      else if(bounds.target.feature.properties.name=="Rajasthan")
+         {
+             mymap.removeLayer(layer);
+	         showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	     else if(bounds.target.feature.properties.name=="Sikkim")
+         {
+             mymap.removeLayer(layer);
+	         showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	      else if(bounds.target.feature.properties.name=="Telangana")
+         {
+             mymap.removeLayer(layer);
+	         showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	     else if(bounds.target.feature.properties.name=="Tamil Nadu")
+         {
+             mymap.removeLayer(layer);
+	         showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	      else if(bounds.target.feature.properties.name=="Tripura")
+         {
+             mymap.removeLayer(layer);
+	        showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	     else if(bounds.target.feature.properties.name=="Uttar Pradesh")
+         {
+             mymap.removeLayer(layer);
+	        // var newlayer = L.geoJSON(,{style:mapstyle,onEachFeature: onEachFeature}).addTo(mymap);
+	     }
+	     else if(bounds.target.feature.properties.name=="Uttarakhand")
+         {
+             mymap.removeLayer(layer);
+	        showAndroidToast(bounds.target.feature.properties.name);
+	     }
+	     else if(bounds.target.feature.properties.name=="West Bengal")
+         {
+             mymap.removeLayer(layer);
+	        showAndroidToast(bounds.target.feature.properties.name);
+	     }
+       }
+		   check(count);
       }
-     function showAndroidToast(constituency)
+
+       function showAndroidToast(state)
      {
-        AndroidInterface.showToast(constituency);
+        AndroidInterface.showToast(state);
      }
 
 	 function highlightFeature(evt) {
@@ -101,7 +273,7 @@ var highlightStyle = {
 
 	function onEachFeature(feature, layer) {
 
-       layer.bindTooltip(feature.properties.pconst,{opacity:'1',direction : 'right',});
+       layer.bindTooltip(feature.properties.name,{opacity:'1',direction : 'right'});
 		layer.on({
             mouseover:highlightFeature,
             mouseout:resetHighlight,
